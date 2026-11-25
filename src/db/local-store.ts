@@ -61,28 +61,7 @@ export interface LocalStoreData {
   }>;
 }
 
-const DEFAULT_GUESTBOOK: LocalStoreData['guestbookMessages'] = [
-  {
-    id: 1,
-    senderName: 'Teman Meja Depan',
-    message: 'Makasih banyak buat 10 hari yang seru dan penuh tawa! Dari ga ngerti route Laravel sampai akhirnya web kita jalan bareng.',
-    favoriteMoment: 'Pas error 419 Page Expired sekelas bingung bareng',
-    noteTone: 'sky',
-    category: 'class',
-    isApproved: true,
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    senderName: 'Alumni Kelas Laravel',
-    message: 'Terima kasih banyak Pak Yusup & Pak Salman atas bimbingan dan ilmunya yang luar biasa sabar!',
-    favoriteMoment: 'Bimbingan muter meja satu per satu sampai paham',
-    noteTone: 'sage',
-    category: 'instructor',
-    isApproved: true,
-    createdAt: new Date().toISOString(),
-  },
-];
+const DEFAULT_GUESTBOOK: LocalStoreData['guestbookMessages'] = [];
 
 let inMemoryStore: LocalStoreData | null = null;
 

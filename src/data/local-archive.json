@@ -242,27 +242,6 @@
       "createdAt": "2026-11-25T11:54:46.077Z"
     }
   ],
-  "guestbookMessages": [
-    {
-      "id": 1,
-      "senderName": "Teman Meja Depan",
-      "message": "Makasih banyak buat 10 hari yang seru dan penuh tawa! Dari ga ngerti route Laravel sampai akhirnya web kita jalan bareng.",
-      "favoriteMoment": "Pas error 419 Page Expired sekelas bingung bareng",
-      "noteTone": "sky",
-      "category": "class",
-      "isApproved": true,
-      "createdAt": "2026-11-25T11:54:46.069Z"
-    },
-    {
-      "id": 2,
-      "senderName": "Alumni Kelas Laravel",
-      "message": "Terima kasih banyak Pak Yusup & Pak Salman atas bimbingan dan ilmunya yang luar biasa sabar!",
-      "favoriteMoment": "Bimbingan muter meja satu per satu sampai paham",
-      "noteTone": "sage",
-      "category": "instructor",
-      "isApproved": true,
-      "createdAt": "2026-11-25T11:54:46.072Z"
-    }
-  ],
+  "guestbookMessages": [],
   "users": []
 }

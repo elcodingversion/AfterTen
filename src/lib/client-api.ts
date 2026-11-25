@@ -11,28 +11,7 @@ import { INITIAL_MEMORIES } from '../data/memories.ts';
 import { INITIAL_INSTRUCTORS } from '../data/instructors.ts';
 import { INITIAL_PARTICIPANTS } from '../data/participants.ts';
 
-const DEFAULT_GUESTBOOK = [
-  {
-    id: 1,
-    senderName: 'Teman Meja Depan',
-    message: 'Makasih banyak buat 10 hari yang seru dan penuh tawa! Dari ga ngerti route Laravel sampai akhirnya web kita jalan bareng.',
-    favoriteMoment: 'Pas error 419 Page Expired sekelas bingung bareng',
-    noteTone: 'sky',
-    category: 'class',
-    isApproved: true,
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    senderName: 'Alumni Kelas Laravel',
-    message: 'Terima kasih banyak Pak Yusup & Pak Salman atas bimbingan dan ilmunya yang luar biasa sabar!',
-    favoriteMoment: 'Bimbingan muter meja satu per satu sampai paham',
-    noteTone: 'sage',
-    category: 'instructor',
-    isApproved: true,
-    createdAt: new Date().toISOString(),
-  },
-];
+const DEFAULT_GUESTBOOK: any[] = [];
 
 let seeded = false;
 
@@ -131,6 +110,11 @@ export async function fetchGuestbook() {
 
     const messages = snap.docs
       .map((d) => d.data() as any)
+      .filter(
+        (m) =>
+          m.senderName !== 'Teman Meja Depan' &&
+          m.senderName !== 'Alumni Kelas Laravel'
+      )
       .sort(
         (a: any, b: any) =>
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() || (b.id ?? 0) - (a.id ?? 0)
