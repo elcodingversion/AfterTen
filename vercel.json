@@ -7,6 +7,18 @@
       "destination": "/api"
     },
     {
+      "source": "/src/assets/images/:path*",
+      "destination": "/src/assets/images/:path*"
+    },
+    {
+      "source": "/assets/images/:path*",
+      "destination": "/assets/images/:path*"
+    },
+    {
+      "source": "/media/:path*",
+      "destination": "/media/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
