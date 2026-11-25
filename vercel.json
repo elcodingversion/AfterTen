@@ -3,10 +3,6 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
       "source": "/src/assets/images/:path*",
       "destination": "/src/assets/images/:path*"
     },
@@ -16,7 +12,7 @@
     },
     {
       "source": "/media/:path*",
-      "destination": "/media/:path*"
+      "destination": "\/media/:path*"
     },
     {
       "source": "/(.*)",

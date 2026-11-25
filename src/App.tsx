@@ -12,6 +12,7 @@ import { GuestbookPage } from './pages/GuestbookPage.tsx';
 import { NotesPage } from './pages/NotesPage.tsx';
 import { QuizPage } from './pages/QuizPage.tsx';
 import { WelcomePage } from './pages/WelcomePage.tsx';
+import { fetchArchive, fetchGuestbook } from './lib/client-api.ts';
 import {
   PAGE_ROUTES,
   type Instructor,
@@ -66,15 +67,11 @@ export default function App() {
     }
   };
 
-  const fetchArchive = useCallback(async () => {
+  const fetchArchiveData = useCallback(async () => {
     setArchiveLoading(true);
     setArchiveError(null);
     try {
-      const res = await fetch('/api/archive');
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Belum bisa muat isi archive.');
-      }
+      const data = await fetchArchive();
       setMemories(data.memories ?? []);
       setInstructors(data.instructors ?? []);
     } catch (err) {
@@ -88,9 +85,8 @@ export default function App() {
 
   const fetchGuestbookCount = useCallback(async () => {
     try {
-      const res = await fetch('/api/guestbook');
-      const data = await res.json();
-      if (res.ok && Array.isArray(data.messages)) {
+      const data = await fetchGuestbook();
+      if (Array.isArray(data.messages)) {
         setGuestbookCount(data.messages.length);
       }
     } catch {
@@ -99,8 +95,8 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    fetchArchive();
-  }, [fetchArchive]);
+    fetchArchiveData();
+  }, [fetchArchiveData]);
 
   useEffect(() => {
     fetchGuestbookCount();

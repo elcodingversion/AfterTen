@@ -8,6 +8,7 @@ import {
 } from '../components/HandDrawnArt.tsx';
 import { PageTurnFooter } from '../components/PageTurnFooter.tsx';
 import { type GuestbookNote, type PageId } from '../types.ts';
+import { fetchGuestbook } from '../lib/client-api.ts';
 
 interface GoodbyePageProps {
   onNavigate: (page: PageId) => void;
