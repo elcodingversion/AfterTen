@@ -1,0 +1,6 @@
+{
+  "name": "A Little After Class",
+  "description": "A tiny archive of our ten days together — a digital farewell gift from the Disnaker Junior Web Programming cohort.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,268 @@
+{
+  "participants": [
+    {
+      "id": 1,
+      "name": "Peserta 01 (Editable)",
+      "photoUrl": null,
+      "description": "Selalu siap sedia colokan cadangan dan energi debugging yang paling santai.",
+      "roleLabel": "Teman Sekelas · Front-End Curious",
+      "sortOrder": 1,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 2,
+      "name": "Peserta 02 (Editable)",
+      "photoUrl": null,
+      "description": "Bikin wireframe kosong berubah jadi layout rapi lebih cepet dari perkiraan.",
+      "roleLabel": "Teman Sekelas · Layout Builder",
+      "sortOrder": 2,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 3,
+      "name": "Peserta 03 (Editable)",
+      "photoUrl": null,
+      "description": "Penyuplai recehan terbaik tiap kelas mulai hening gara-gara JavaScript.",
+      "roleLabel": "Teman Sekelas · Mood Lifter",
+      "sortOrder": 3,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 4,
+      "name": "Peserta 04 (Editable)",
+      "photoUrl": null,
+      "description": "Selalu nanyain hal yang sebenernya setengah ruangan juga pengen tanya.",
+      "roleLabel": "Teman Sekelas · Thoughtful Learner",
+      "sortOrder": 4,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 5,
+      "name": "Peserta 05 (Editable)",
+      "photoUrl": null,
+      "description": "Nggak pernah ragu ngesot kursinya buat ikut nyariin titik koma yang ilang.",
+      "roleLabel": "Teman Sekelas · Kind Helper",
+      "sortOrder": 5,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 6,
+      "name": "Peserta 06 (Editable)",
+      "photoUrl": null,
+      "description": "Pemilik buku catatan paling rapi di seluruh ruang pelatihan Disnaker.",
+      "roleLabel": "Teman Sekelas · Note Keeper",
+      "sortOrder": 6,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 7,
+      "name": "Peserta 07 (Editable)",
+      "photoUrl": null,
+      "description": "Iseng ngerakit web perpisahan kecil ini sepulang kelas buat kenang-kenangan.",
+      "roleLabel": "Teman Sekelas · Archive Maker",
+      "sortOrder": 7,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 8,
+      "name": "Peserta 08 (Editable)",
+      "photoUrl": null,
+      "description": "Bukti nyata kalau 10 hari belajar pelan-pelan bisa bawa kita sejauh ini.",
+      "roleLabel": "Teman Sekelas · Project Builder",
+      "sortOrder": 8,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    }
+  ],
+  "memories": [
+    {
+      "id": 1,
+      "title": "Awal Kenalan & artisan serve",
+      "description": "Buka project Laravel pertama kali dan bingung liat foldernya yang banyak banget.",
+      "dayNumber": 1,
+      "section": "timeline",
+      "mediaType": "photo",
+      "mediaUrl": "/src/assets/images/welcome_desk_notebook_1795593743275.jpg",
+      "thumbnailUrl": "/src/assets/images/welcome_desk_notebook_1795593743275.jpg",
+      "momentNote": "php artisan serve",
+      "aspectHint": "landscape",
+      "sortOrder": 1,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 2,
+      "title": "Drama Route, Blade & Kopi",
+      "description": "Kenalan sama web.php, @csrf, dan es kopi yang nemenin tiap error 419 muncul.",
+      "dayNumber": 2,
+      "section": "timeline",
+      "mediaType": "photo",
+      "mediaUrl": "/src/assets/images/memory_coffee_break_1795593743814.jpg",
+      "thumbnailUrl": "/src/assets/images/memory_coffee_break_1795593743814.jpg",
+      "momentNote": "@csrf jangan sampai lupa",
+      "aspectHint": "portrait",
+      "sortOrder": 2,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 3,
+      "title": "Ngulik CRUD & Debug Bareng",
+      "description": "Momen lega sekelas pas data form akhirnya berhasil kesimpan ke database.",
+      "dayNumber": 3,
+      "section": "timeline",
+      "mediaType": "photo",
+      "mediaUrl": "/src/assets/images/memory_debugging_together_1795593743842.jpg",
+      "thumbnailUrl": "/src/assets/images/memory_debugging_together_1795593743842.jpg",
+      "momentNote": "dd($request->all());",
+      "aspectHint": "landscape",
+      "sortOrder": 3,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 4,
+      "title": "Demo Day & Tepuk Tangan",
+      "description": "Presentasi hasil project masing-masing dan sadar sepuluh hari kerasa cepet banget.",
+      "dayNumber": 4,
+      "section": "timeline",
+      "mediaType": "photo",
+      "mediaUrl": "/src/assets/images/memory_team_showcase_1795593745010.jpg",
+      "thumbnailUrl": "/src/assets/images/memory_team_showcase_1795593745010.jpg",
+      "momentNote": "Proud of everyone!",
+      "aspectHint": "wide",
+      "sortOrder": 4,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 5,
+      "title": "Meja Pagi Sebelum Mulai",
+      "description": "Buku sketsa masih bersih dan kopi hangat sebelum terminal dibuka.",
+      "dayNumber": null,
+      "section": "gallery",
+      "mediaType": "photo",
+      "mediaUrl": "/src/assets/images/welcome_desk_notebook_1795593743275.jpg",
+      "thumbnailUrl": "/src/assets/images/welcome_desk_notebook_1795593743275.jpg",
+      "momentNote": "Ganti dengan foto dokumentasi asli nanti",
+      "aspectHint": "landscape",
+      "sortOrder": 1,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 6,
+      "title": "Suasana Kelas Sore",
+      "description": "Lagi serius nyimak penjelasan sambil sesekali lirik layar sebelah.",
+      "dayNumber": null,
+      "section": "gallery",
+      "mediaType": "photo",
+      "mediaUrl": "/src/assets/images/memory_coding_class_1795593742824.jpg",
+      "thumbnailUrl": "/src/assets/images/memory_coding_class_1795593742824.jpg",
+      "momentNote": "Ganti dengan foto dokumentasi asli nanti",
+      "aspectHint": "wide",
+      "sortOrder": 2,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 7,
+      "title": "Es Kopi & Sticky Notes",
+      "description": "Starter pack paling setia buat nemenin migrasi tabel database.",
+      "dayNumber": null,
+      "section": "gallery",
+      "mediaType": "photo",
+      "mediaUrl": "/src/assets/images/memory_coffee_break_1795593743814.jpg",
+      "thumbnailUrl": "/src/assets/images/memory_coffee_break_1795593743814.jpg",
+      "momentNote": "Ganti dengan foto dokumentasi asli nanti",
+      "aspectHint": "portrait",
+      "sortOrder": 3,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 8,
+      "title": "Nge-debug Bareng",
+      "description": "Dua kepala nyariin satu titik koma yang nyelip di controller.",
+      "dayNumber": null,
+      "section": "gallery",
+      "mediaType": "photo",
+      "mediaUrl": "/src/assets/images/memory_debugging_together_1795593743842.jpg",
+      "thumbnailUrl": "/src/assets/images/memory_debugging_together_1795593743842.jpg",
+      "momentNote": "Ganti dengan foto dokumentasi asli nanti",
+      "aspectHint": "square",
+      "sortOrder": 4,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 9,
+      "title": "Senyum Pas Demo Day",
+      "description": "Akhirnya project-nya jalan lancar pas dipresentasiin!",
+      "dayNumber": null,
+      "section": "gallery",
+      "mediaType": "photo",
+      "mediaUrl": "/src/assets/images/memory_team_showcase_1795593745010.jpg",
+      "thumbnailUrl": "/src/assets/images/memory_team_showcase_1795593745010.jpg",
+      "momentNote": "Ganti dengan foto dokumentasi asli nanti",
+      "aspectHint": "wide",
+      "sortOrder": 5,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 10,
+      "title": "Klip Suasana Kelas",
+      "description": "Potongan video singkat pas semua lagi fokus ngulik bareng.",
+      "dayNumber": null,
+      "section": "video",
+      "mediaType": "reel",
+      "mediaUrl": null,
+      "thumbnailUrl": "/src/assets/images/memory_coding_class_1795593742824.jpg",
+      "momentNote": "00:18 · Tambahin link video asli di Owner corner",
+      "aspectHint": "wide",
+      "sortOrder": 1,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    },
+    {
+      "id": 11,
+      "title": "Momen Demo Day",
+      "description": "Dokumentasi tepuk tangan dan senyum lega setelah presentasi.",
+      "dayNumber": null,
+      "section": "video",
+      "mediaType": "reel",
+      "mediaUrl": null,
+      "thumbnailUrl": "/src/assets/images/memory_team_showcase_1795593745010.jpg",
+      "momentNote": "00:24 · Tambahin link video asli di Owner corner",
+      "aspectHint": "wide",
+      "sortOrder": 2,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    }
+  ],
+  "instructors": [
+    {
+      "id": 1,
+      "name": "Pak Salman & Pak Yusup",
+      "photoUrl": null,
+      "role": "Instruktur Kelas Laravel · Disnaker",
+      "salutation": "Halo, Pak Salman & Pak Yusup!",
+      "message": "Thank you so much for these past 10 days! Terima kasih sudah sabar membimbing, menjelaskan, dan selalu meluangkan waktu untuk membantu kami memahami hal-hal yang belum kami mengerti.\n\nIt was a short but meaningful journey. More than just the lessons, we'll remember your kindness and patience throughout the process.\n\nSemoga Pak Yusup dan Pak Salman selalu diberi kesehatan, kelancaran dalam setiap urusan, dan terus dipertemukan dengan banyak hal baik. Wishing you both all the best!",
+      "closing": "Once again, thank you for everything, Pak!",
+      "sortOrder": 1,
+      "createdAt": "2026-11-25T11:54:46.077Z"
+    }
+  ],
+  "guestbookMessages": [
+    {
+      "id": 1,
+      "senderName": "Teman Meja Depan",
+      "message": "Makasih banyak buat 10 hari yang seru dan penuh tawa! Dari ga ngerti route Laravel sampai akhirnya web kita jalan bareng.",
+      "favoriteMoment": "Pas error 419 Page Expired sekelas bingung bareng",
+      "noteTone": "sky",
+      "category": "class",
+      "isApproved": true,
+      "createdAt": "2026-11-25T11:54:46.069Z"
+    },
+    {
+      "id": 2,
+      "senderName": "Alumni Kelas Laravel",
+      "message": "Terima kasih banyak Pak Yusup & Pak Salman atas bimbingan dan ilmunya yang luar biasa sabar!",
+      "favoriteMoment": "Bimbingan muter meja satu per satu sampai paham",
+      "noteTone": "sage",
+      "category": "instructor",
+      "isApproved": true,
+      "createdAt": "2026-11-25T11:54:46.072Z"
+    }
+  ],
+  "users": []
+}

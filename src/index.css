@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --font-hand: "Architects Daughter", cursive, sans-serif;
+  --font-serif: "Architects Daughter", cursive, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-ivory: #F7F4EC;
+  --color-paper: #FAF7F0;
+  --color-sage: #DCE5D6;
+  --color-lavender: #E8DFF2;
+  --color-butter: #F3DDA9;
+  --color-sky: #CFE0EE;
+  --color-dusty-blue: #A7C6DF;
+  --color-charcoal: #353630;
+  --color-charcoal-muted: #5C5E54;
+}
+
+@layer base {
+  html {
+    background-color: #F7F4EC;
+    color: #353630;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #F7F4EC;
+    color: #353630;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, .font-hand {
+    font-family: "Architects Daughter", cursive, sans-serif;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: #CFE0EE;
+    color: #353630;
+  }
+
+  :focus-visible {
+    outline: 2px solid #353630;
+    outline-offset: 2px;
+  }
+}
+
+.zine-sheet {
+  background-color: #FAF7F0;
+  border: 1.5px solid rgba(53, 54, 48, 0.22);
+}
+
+.btn-sky {
+  background-color: #CFE0EE;
+  color: #353630;
+  border: 1.5px solid #353630;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.btn-sky:hover {
+  background-color: #DCE9F4;
+  transform: translateY(-1px);
+}
+
+.btn-butter {
+  background-color: #F3DDA9;
+  color: #353630;
+  border: 1.5px solid #353630;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.btn-butter:hover {
+  background-color: #F7E5B8;
+  transform: translateY(-1px);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
