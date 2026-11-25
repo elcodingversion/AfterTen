@@ -56,9 +56,7 @@ export const GoodbyePage: React.FC<GoodbyePageProps> = ({
     setNotesLoading(true);
     setNotesError(null);
     try {
-      const res = await fetch('/api/guestbook');
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Belum bisa muat catatan.');
+      const data = await fetchGuestbook();
       setNotes(data.messages ?? []);
     } catch (err) {
       setNotesError(err instanceof Error ? err.message : 'Gagal nyambung ke server.');

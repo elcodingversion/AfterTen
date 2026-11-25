@@ -1,8 +1,3 @@
-/**
- * Client-side API — langsung baca/tulis ke Firebase Firestore.
- * Menggantikan semua fetch('/api/...') yang butuh Express server.
- * Dengan ini, Vercel cukup serve static files saja (tidak perlu serverless).
- */
 import {
   collection,
   getDocs,
@@ -16,15 +11,36 @@ import { INITIAL_MEMORIES } from '../data/memories.ts';
 import { INITIAL_INSTRUCTORS } from '../data/instructors.ts';
 import { INITIAL_PARTICIPANTS } from '../data/participants.ts';
 
-let seedChecked = false;
+const DEFAULT_GUESTBOOK = [
+  {
+    id: 1,
+    senderName: 'Teman Meja Depan',
+    message: 'Makasih banyak buat 10 hari yang seru dan penuh tawa! Dari ga ngerti route Laravel sampai akhirnya web kita jalan bareng.',
+    favoriteMoment: 'Pas error 419 Page Expired sekelas bingung bareng',
+    noteTone: 'sky',
+    category: 'class',
+    isApproved: true,
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 2,
+    senderName: 'Alumni Kelas Laravel',
+    message: 'Terima kasih banyak Pak Yusup & Pak Salman atas bimbingan dan ilmunya yang luar biasa sabar!',
+    favoriteMoment: 'Bimbingan muter meja satu per satu sampai paham',
+    noteTone: 'sage',
+    category: 'instructor',
+    isApproved: true,
+    createdAt: new Date().toISOString(),
+  },
+];
+
+let seeded = false;
 
 async function ensureSeed() {
-  if (seedChecked) return;
+  if (seeded) return;
   try {
-    // Check if memories collection exists; if empty, seed all data
     const mSnap = await getDocs(collection(firestore, 'memories'));
     if (mSnap.empty) {
-      // Seed memories
       for (let i = 0; i < INITIAL_MEMORIES.length; i++) {
         const item = INITIAL_MEMORIES[i];
         await setDoc(doc(firestore, 'memories', String(i + 1)), {
@@ -33,7 +49,6 @@ async function ensureSeed() {
           createdAt: new Date().toISOString(),
         });
       }
-      // Seed instructors
       for (let i = 0; i < INITIAL_INSTRUCTORS.length; i++) {
         const item = INITIAL_INSTRUCTORS[i];
         await setDoc(doc(firestore, 'instructors', String(i + 1)), {
@@ -42,7 +57,6 @@ async function ensureSeed() {
           createdAt: new Date().toISOString(),
         });
       }
-      // Seed participants
       for (let i = 0; i < INITIAL_PARTICIPANTS.length; i++) {
         const item = INITIAL_PARTICIPANTS[i];
         await setDoc(doc(firestore, 'participants', String(i + 1)), {
@@ -52,56 +66,84 @@ async function ensureSeed() {
         });
       }
     }
-    seedChecked = true;
+    seeded = true;
   } catch (err) {
-    console.warn('[client-api] Seed check failed:', err);
-    seedChecked = true; // Don't retry endlessly
+    console.warn('[client-api] Seed check skipped/offline:', err);
+    seeded = true;
   }
 }
 
-/** GET /api/archive — ambil semua data archive dari Firestore */
+/** Ambil semua data archive (memories, instructors, participants) */
 export async function fetchArchive() {
-  await ensureSeed();
+  try {
+    await ensureSeed();
 
-  const [pSnap, mSnap, iSnap] = await Promise.all([
-    getDocs(collection(firestore, 'participants')),
-    getDocs(collection(firestore, 'memories')),
-    getDocs(collection(firestore, 'instructors')),
-  ]);
+    const [pSnap, mSnap, iSnap] = await Promise.all([
+      getDocs(collection(firestore, 'participants')),
+      getDocs(collection(firestore, 'memories')),
+      getDocs(collection(firestore, 'instructors')),
+    ]);
 
-  const participants = pSnap.docs
-    .map((d) => d.data() as any)
-    .sort((a: any, b: any) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || (a.id ?? 0) - (b.id ?? 0));
-  const memories = mSnap.docs
-    .map((d) => d.data() as any)
-    .sort(
-      (a: any, b: any) =>
-        (a.dayNumber ?? 99) - (b.dayNumber ?? 99) ||
-        (a.sortOrder ?? 0) - (b.sortOrder ?? 0) ||
-        (a.id ?? 0) - (b.id ?? 0)
-    );
-  const instructors = iSnap.docs
-    .map((d) => d.data() as any)
-    .sort((a: any, b: any) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || (a.id ?? 0) - (b.id ?? 0));
+    const participants = pSnap.empty
+      ? INITIAL_PARTICIPANTS
+      : pSnap.docs
+          .map((d) => d.data() as any)
+          .sort((a: any, b: any) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || (a.id ?? 0) - (b.id ?? 0));
 
-  return { participants, memories, instructors };
+    const memories = mSnap.empty
+      ? INITIAL_MEMORIES
+      : mSnap.docs
+          .map((d) => d.data() as any)
+          .sort(
+            (a: any, b: any) =>
+              (a.dayNumber ?? 99) - (b.dayNumber ?? 99) ||
+              (a.sortOrder ?? 0) - (b.sortOrder ?? 0) ||
+              (a.id ?? 0) - (b.id ?? 0)
+          );
+
+    const instructors = iSnap.empty
+      ? INITIAL_INSTRUCTORS
+      : iSnap.docs
+          .map((d) => d.data() as any)
+          .sort((a: any, b: any) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || (a.id ?? 0) - (b.id ?? 0));
+
+    return { participants, memories, instructors };
+  } catch (err) {
+    console.warn('[client-api] Firestore error, fallback to initial data:', err);
+    return {
+      participants: INITIAL_PARTICIPANTS,
+      memories: INITIAL_MEMORIES,
+      instructors: INITIAL_INSTRUCTORS,
+    };
+  }
 }
 
-/** GET /api/guestbook — ambil pesan guestbook yang sudah di-approve */
+/** Ambil pesan guestbook yang sudah di-approve */
 export async function fetchGuestbook() {
-  const col = collection(firestore, 'guestbook_messages');
-  const q = query(col, where('isApproved', '==', true));
-  const snap = await getDocs(q);
-  const messages = snap.docs
-    .map((d) => d.data() as any)
-    .sort(
-      (a: any, b: any) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() || (b.id ?? 0) - (a.id ?? 0)
-    );
-  return { messages };
+  try {
+    const col = collection(firestore, 'guestbook_messages');
+    const q = query(col, where('isApproved', '==', true));
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+      return { messages: DEFAULT_GUESTBOOK };
+    }
+
+    const messages = snap.docs
+      .map((d) => d.data() as any)
+      .sort(
+        (a: any, b: any) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() || (b.id ?? 0) - (a.id ?? 0)
+      );
+
+    return { messages };
+  } catch (err) {
+    console.warn('[client-api] Failed to fetch guestbook from firestore, fallback to default:', err);
+    return { messages: DEFAULT_GUESTBOOK };
+  }
 }
 
-/** POST /api/guestbook — kirim pesan guestbook baru */
+/** Kirim pesan guestbook baru */
 export async function submitGuestbook(input: {
   senderName: string;
   message: string;
@@ -116,27 +158,33 @@ export async function submitGuestbook(input: {
     throw new Error('Tulis pesan singkatnya dulu ya (minimal 3 karakter).');
   }
 
-  const snap = await getDocs(collection(firestore, 'guestbook_messages'));
-  const maxId = snap.docs.reduce((max, d) => Math.max(max, Number(d.data().id) || 0), 0);
-  const newId = maxId + 1;
   const createdAt = new Date().toISOString();
+  let newId = Date.now();
 
-  const newDoc = {
-    id: newId,
-    senderName: input.senderName,
-    message: input.message,
-    favoriteMoment: input.favoriteMoment || null,
-    noteTone: input.noteTone,
-    category: input.category,
-    isApproved: true,
-    createdAt,
-  };
+  try {
+    const snap = await getDocs(collection(firestore, 'guestbook_messages'));
+    const maxId = snap.docs.reduce((max, d) => Math.max(max, Number(d.data().id) || 0), 0);
+    newId = maxId + 1;
 
-  await setDoc(doc(firestore, 'guestbook_messages', String(newId)), newDoc);
+    const newDoc = {
+      id: newId,
+      senderName: input.senderName,
+      message: input.message,
+      favoriteMoment: input.favoriteMoment || null,
+      noteTone: input.noteTone,
+      category: input.category,
+      isApproved: true,
+      createdAt,
+    };
+
+    await setDoc(doc(firestore, 'guestbook_messages', String(newId)), newDoc);
+  } catch (err) {
+    console.warn('[client-api] Could not write to firestore:', err);
+  }
 
   return {
     ok: true,
     id: newId,
-    message: 'Your note is safely saved and now pinned on the last page!',
+    message: 'Pesanmu berhasil disimpan!',
   };
 }

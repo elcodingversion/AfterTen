@@ -4,6 +4,7 @@ import { CheckCircle2, MailOpen, Send, X } from 'lucide-react';
 import { CurvyHeartDivider } from '../components/HandDrawnArt.tsx';
 import { PageTurnFooter } from '../components/PageTurnFooter.tsx';
 import { type GuestbookNote, type Instructor, type PageId } from '../types.ts';
+import { submitGuestbook } from '../lib/client-api.ts';
 
 interface NotesPageProps {
   instructors: Instructor[];
@@ -117,22 +118,13 @@ export const NotesPage: React.FC<NotesPageProps> = ({
 
     setSubmitting(true);
     try {
-      const res = await fetch('/api/guestbook', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          senderName: senderName.trim(),
-          message: message.trim(),
-          favoriteMoment: 'Untuk: Pak Salman & Pak Yusup',
-          noteTone,
-          category: 'instructor',
-          website: honeypot,
-        }),
+      await submitGuestbook({
+        senderName: senderName.trim(),
+        message: message.trim(),
+        favoriteMoment: 'Untuk: Pak Salman & Pak Yusup',
+        noteTone,
+        category: 'instructor',
       });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Gagal ngirim pesan buat instruktur.');
-      }
 
       setSubmitSuccess(
         'Pesanmu buat instruktur udah aman tersimpan dan langsung nempel di halaman terakhir!'

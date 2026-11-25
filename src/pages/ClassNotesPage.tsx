@@ -4,6 +4,7 @@ import { CheckCircle2, Send } from 'lucide-react';
 import { CurvyHeartDivider } from '../components/HandDrawnArt.tsx';
 import { PageTurnFooter } from '../components/PageTurnFooter.tsx';
 import { type GuestbookNote, type PageId } from '../types.ts';
+import { submitGuestbook } from '../lib/client-api.ts';
 
 interface ClassNotesPageProps {
   onNavigate: (page: PageId) => void;
@@ -66,22 +67,13 @@ export const ClassNotesPage: React.FC<ClassNotesPageProps> = ({
 
     setSubmitting(true);
     try {
-      const res = await fetch('/api/guestbook', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          senderName: senderName.trim(),
-          message: message.trim(),
-          favoriteMoment: favoriteMoment.trim(),
-          noteTone,
-          category: 'class',
-          website: honeypot,
-        }),
+      await submitGuestbook({
+        senderName: senderName.trim(),
+        message: message.trim(),
+        favoriteMoment: favoriteMoment.trim(),
+        noteTone,
+        category: 'class',
       });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Gagal ngirim kesan & pesan.');
-      }
 
       setSubmitSuccess(
         'Kesan & pesanmu udah kesimpen dan langsung nempel di halaman terakhir bareng punya teman-teman lain!'
